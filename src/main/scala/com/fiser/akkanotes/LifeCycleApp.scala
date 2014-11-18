@@ -7,7 +7,10 @@ object LifeCycleApp extends App {
 
   val lifeCycleActor = actorSystem.actorOf(Props[BasicLifecycleLoggingActor], "lifeCycleActor")
 
-  val deadLetterListener = actorSystem.actorOf(Props[MyCustomDeadLetterListener])
+  println(lifeCycleActor.path)
+
+  val deadLetterListener = actorSystem.actorOf(Props[MyCustomDeadLetterListener], "deadLetterListener")
+  println(deadLetterListener.path)
   actorSystem.eventStream.subscribe(deadLetterListener, classOf[DeadLetter])
 
   lifeCycleActor ! "hello"
