@@ -30,4 +30,15 @@ with ImplicitSender {
       }
     }
   }
+
+  "A delayed student" must {
+    "fire the QuoteResponse after 5 seconds when InitialSignal is sent to it" in {
+      val teacherRef = system.actorOf(Props[TeacherActor], "teacherActorDelayed")
+      val studentRef = system.actorOf(Props(new StudentDelayedActor(teacherRef)), "studentDelayedActor")
+
+      EventFilter.info(start = "Printing from Student Actor", occurrences = 1).intercept {
+        studentRef ! InitSignal
+      }
+    }
+  }
 }

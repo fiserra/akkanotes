@@ -3,7 +3,6 @@ package com.fiser.akkanotes
 import akka.actor.ActorSystem
 import akka.testkit.{TestActorRef, TestKit}
 import com.fiser.akkanotes.protocols.TeacherProtocol.QuoteRequest
-import com.typesafe.config.ConfigFactory
 import org.scalatest.{BeforeAndAfterAll, MustMatchers, WordSpecLike}
 
 class TeacherPreTest extends TestKit(ActorSystem("UniversityMessageSystem"))
